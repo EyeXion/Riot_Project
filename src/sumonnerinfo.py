@@ -18,6 +18,7 @@ class SummonerInfo:
         self.id = ""
         self.region = ""
         self.s_mastery_dict = ""
+        self.s_game_dict = ""
 
     # Method called to start the gathering of info
     def getInfo(self):
@@ -103,3 +104,16 @@ class SummonerInfo:
             print("Error requete recherche data champion")
             print(info_request.json())
             return {}
+
+    def getCurrentGame(self):
+        game_request = r.get("https://" + self.region + ".api.riotgames.com/lol/spectator/v4/active-games/by-summoner/" + self.id + "?api_key=" + apiKey)
+
+        if game_request.status_code == 404:
+            return False
+        elif game_request.status_code == 200:
+            self.s_game_dict = game_request.json()
+            return True
+        else:
+            print("Error demande infos game")
+            print(game_request.json())
+            return False

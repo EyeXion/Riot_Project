@@ -54,11 +54,15 @@ class Panel(tk.Frame):
             self.labelChampionMasteryIcon.append(tk.Label(self))
             self.labelChampionMasteryLevel.append(tk.Label(self))
             self.labelChampionMasteryName.append(tk.Label(self))
+        self.gameText = tk.Label(self)
+        self.gameIcon = tk.Label(self)
+        self.master.s.getCurrentGame()
+        self.gameInfo = self.master.s.s_game_dict
         self.grid()
         self.createWidgets()
 
     def createWidgets(self):
-        self.restartButton.grid(row = 0, column = 4, padx = 50)
+        self.restartButton.grid(row = 0, column = 4, padx = 10)
         self.labelName["text"] = self.master.s.name
         self.labelName.config(font=("Helvetica", 40))
         self.labelLevel["text"] = "Lvl " + str(self.master.s.s_info_dict['summonerLevel'])
@@ -76,7 +80,7 @@ class Panel(tk.Frame):
         imageProfileIcon = ImageTk.PhotoImage(profileIcon)
         self.labelIcon["image"] = imageProfileIcon
         self.labelIcon.image = imageProfileIcon
-        self.labelIcon.grid(row = 0, column = 3, padx = 20)
+        self.labelIcon.grid(row = 0, column = 3, padx = 10)
         imageMastery = []
         emblemMastery = []
 
@@ -103,18 +107,39 @@ class Panel(tk.Frame):
                 self.labelChampionMasteryIcon[i].image = imageMastery[i]
                 self.labelChampionMasteryLevel[i]["image"] = emblemMastery[i]
                 self.labelChampionMasteryLevel[i].image = emblemMastery[i]
-                self.labelChampionMasteryName[i].grid(row = i+1, column = 1)
-                self.labelChampionMasteryIcon[i].grid(row = i+1, column = 2)
-                self.labelChampionMasteryLevel[i].grid(row = i+1, column = 3)
+                self.labelChampionMasteryName[i].grid(row = i+1, column = 0)
+                self.labelChampionMasteryIcon[i].grid(row = i+1, column = 1)
+                self.labelChampionMasteryLevel[i].grid(row = i+1, column = 2)
             except IndexError:
                 print("Index error dans l'affiche maitrise avec i = " + str(i))
                 self.labelChampionMasteryLevel[i]["text"] = "VOID"
                 self.labelChampionMasteryName[i]["text"] ="VOID"
                 self.labelChampionMasteryIcon[i]["text"] = "VOID"
-                self.labelChampionMasteryName[i].grid(row = i+1, column = 1)
-                self.labelChampionMasteryIcon[i].grid(row = i+1, column = 2)
-                self.labelChampionMasteryLevel[i].grid(row = i+1, column = 3)
+                self.labelChampionMasteryName[i].grid(row = i+1, column = 0)
+                self.labelChampionMasteryIcon[i].grid(row = i+1, column = 1)
+                self.labelChampionMasteryLevel[i].grid(row = i+1, column = 2)
 
 
+            if self.gameInfo == "":
+                self.gameText["text"] = "Not in game"
+                self.gameText["fg"] = "red"
+                self.gameText.config(font=("Helvetica", 30))
+                self.gameText.grid(row = 2, column = 3)
+            else:
+                self.gameText["text"] = "In game with"
+                self.gameText["fg"] = "green"
+                self.gameText.config(font=("Helvetica", 30))
+                self.gameText.grid(row = 1, column = 3)
+                for j in self.gameInfo["participants"]:
+                    if j["summonerId"] == self.master.s.id:
+                        icon_path = self.master.s.getChampionIcon(4)
+                        tmpImage = Image.open(icon_path)
+                        tmpImage = tmpImage.resize((int(tmpImage.size[0] * 0.8), int(tmpImage.size[1] * 0.8)))
+                        imageChampion = ImageTk.PhotoImage(tmpImage)
+                        tmpImage.close()
+                        self.gameIcon["image"]  = imageChampion
+                        self.gameIcon.image = imageChampion
+                        self.gameIcon.grid(row = 2, column = 3)
+                        break
 
 
