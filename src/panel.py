@@ -14,7 +14,7 @@ class Panel(tk.Frame):
                        "MASTER" : "assets/Emblem_Iron.Master",
                        "GRANDMASTER" : "assets/Emblem_Grandmaster.png",
                        "CHALLENGER" : "assets/Emblem_Challenger.png",
-                       "UNRANKED" : "assets/Emblem_Challenger.png"}
+                       "UNRANKED" : "assets/Emblem_Unranked.png"}
 
     dict_image_mastery = { 1 : "assets/mastery-1.png",
                            2: "assets/mastery-2.png",

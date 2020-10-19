@@ -14,10 +14,12 @@ class Region(tk.Frame):
         self.listRegion = tk.Listbox(self) # Listbox for region selection
         self.yDefil["command"] = self.listRegion.yview()
         self.textTitle = tk.Label(self)
+        self.credits = tk.Label(self)
         self.pack()
         self.createWidget()
 
     def createWidget(self):
+        self.credits["text"] = "Coded by EyeXion : https://github.com/EyeXion"
         self.textTitle["text"] = "Entrez EUW, JP, EUN ou KR pour la région"
         self.listRegion["yscrollcommand"] = self.yDefil.set(1,5)
         self.listRegion.insert(0, "EUW")
@@ -29,6 +31,7 @@ class Region(tk.Frame):
         self.listRegion.bind("<KeyPress-Return>", self.getRegion)
         self.textTitle.pack()
         self.listRegion.pack()
+        self.credits.pack(side="bottom")
 
     def getRegion(self, arg):
         index = self.listRegion.curselection()[0]

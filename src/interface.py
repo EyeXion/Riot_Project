@@ -12,6 +12,7 @@ class Interface(tk.Tk):
     def __init__(self):
         super().__init__()
         self.geometry("1000x600")
+        self.title("League of Legends Summoner Info")
         self.s = SummonerInfo()
         self.app = ''
         self.callRegionFrame()
