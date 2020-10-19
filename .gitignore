@@ -1,1 +1,3 @@
-loadedassets/*.*
+loadedassets/*
+!loadedassets/.gitkeep
+.idea/
