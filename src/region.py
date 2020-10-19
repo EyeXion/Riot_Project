@@ -33,7 +33,6 @@ class Region(tk.Frame):
     def getRegion(self, arg):
         index = self.listRegion.curselection()[0]
         self.master.s.region = self.regDictionnary[index]
-        print("Region  : " + self.master.s.region)
         self.master.callNameFrame()
 
 

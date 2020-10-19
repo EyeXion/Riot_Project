@@ -1,17 +1,24 @@
 # Root class
-from src.name import Name
-from src.region import Region
-from src.panel import Panel
+from name import Name
+from region import Region
+from panel import Panel
 
 
 import tkinter as tk
-from src.sumonnerinfo import SummonerInfo
+from sumonnerinfo import SummonerInfo
 
 class Interface(tk.Tk):
 
     def __init__(self):
         super().__init__()
         self.geometry("1000x600")
+        self.s = SummonerInfo()
+        self.app = ''
+        self.callRegionFrame()
+
+    def startNewWindow(self):
+        self.app.destroy()
+        del self.s
         self.s = SummonerInfo()
         self.app = ''
         self.callRegionFrame()

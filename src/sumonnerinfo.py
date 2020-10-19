@@ -17,6 +17,7 @@ class SummonerInfo:
         self.name = ""
         self.id = ""
         self.region = ""
+        self.s_mastery_dict = ""
 
     # Method called to start the gathering of info
     def getInfo(self):
@@ -65,3 +66,40 @@ class SummonerInfo:
         else:
             print("Erreur chargement image profile")
             print(icon_request.status_code)
+
+    def getSummonerMastery(self):
+        mastery_request = r.get("https://" + self.region + ".api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/" + self.id + "?api_key=" + apiKey)
+
+        if mastery_request.status_code == 200:
+            self.s_mastery_dict = mastery_request.json()
+            return True
+        else:
+            print("Error chargement maitrise champions")
+            print(mastery_request.json())
+            return False
+
+    def getChampionInfo(self, index):
+        info_request = r.get("https://cdn.communitydragon.org/latest/champion/" + str(self.s_mastery_dict[index]["championId"]) + "/data")
+
+        if info_request.status_code == 200:
+            return info_request.json()
+        else:
+            print("Error requete recherche data champion")
+            print(info_request.json())
+            return {}
+
+    def getChampionIcon(self,index):
+        icon_request = r.get(" https://cdn.communitydragon.org/latest/champion/" + str(self.s_mastery_dict[index]["championId"]) + "/square")
+
+        if icon_request.status_code == 200:
+            name_file = "loadedassets/championIcon" + str(index) + ".png"
+            if os.path.exists(name_file):
+                os.remove(name_file)
+            file = open(name_file, "wb")
+            file.write(icon_request.content)
+            file.close()
+            return name_file
+        else:
+            print("Error requete recherche data champion")
+            print(info_request.json())
+            return {}
