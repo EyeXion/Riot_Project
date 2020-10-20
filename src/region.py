@@ -1,6 +1,7 @@
 # Region frame, asks for the region of the sumonner
 
 import tkinter as tk
+from PIL import Image, ImageTk
 
 class Region(tk.Frame):
 
@@ -17,10 +18,16 @@ class Region(tk.Frame):
         self.yDefil["command"] = self.listRegion.yview()
         self.textTitle = tk.Label(self)
         self.credits = tk.Label(self)
+        self.introText = tk.Label(self)
         self.pack()
         self.createWidget()
 
     def createWidget(self):
+        tmpImage = Image.open("../assets/textIntro.png")
+        imageText = ImageTk.PhotoImage(tmpImage)
+        self.introText["image"] = imageText
+        self.introText.image = imageText
+        self.introText.pack(pady = 50)
         self.submitButton["text"] = "Next"
         self.submitButton["command"] = self.getRegion
         self.submitButton["fg"] = "green"
@@ -38,6 +45,7 @@ class Region(tk.Frame):
         self.listRegion.pack()
         self.submitButton.pack()
         self.credits.pack(side="bottom")
+
 
     def getRegion(self, arg = None):
         try :
