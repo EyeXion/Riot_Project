@@ -9,6 +9,8 @@ class Region(tk.Frame):
     def __init__(self, master = None):
         super().__init__(master)
         self.master = master
+        self.errorMessage = tk.Label(self)
+        self.submitButton = tk.Button(self)
         self.yDefil = tk.Scrollbar(self) # Scrollbar for the ListRegion
         self.yDefil["orient"] = 'vertical'
         self.listRegion = tk.Listbox(self) # Listbox for region selection
@@ -19,8 +21,11 @@ class Region(tk.Frame):
         self.createWidget()
 
     def createWidget(self):
+        self.submitButton["text"] = "Next"
+        self.submitButton["command"] = self.getRegion
+        self.submitButton["fg"] = "green"
         self.credits["text"] = "Coded by EyeXion : https://github.com/EyeXion"
-        self.textTitle["text"] = "Entrez EUW, JP, EUN ou KR pour la région"
+        self.textTitle["text"] = "Enter EUW, JP, EUN or KR for the region"
         self.listRegion["yscrollcommand"] = self.yDefil.set(1,5)
         self.listRegion.insert(0, "EUW")
         self.listRegion.insert(1, "NA")
@@ -31,12 +36,19 @@ class Region(tk.Frame):
         self.listRegion.bind("<KeyPress-Return>", self.getRegion)
         self.textTitle.pack()
         self.listRegion.pack()
+        self.submitButton.pack()
         self.credits.pack(side="bottom")
 
-    def getRegion(self, arg):
-        index = self.listRegion.curselection()[0]
-        self.master.s.region = self.regDictionnary[index]
-        self.master.callNameFrame()
+    def getRegion(self, arg = None):
+        try :
+            index = self.listRegion.curselection()[0]
+            self.master.s.region = self.regDictionnary[index]
+            self.master.callNameFrame()
+        except IndexError:
+            self.errorMessage["text"] = "No entry selected, please select a region"
+            self.errorMessage["fg"] = "red"
+            self.errorMessage.config(font=("Helvetica", 20))
+            self.errorMessage.pack(pady = 50)
 
 
 

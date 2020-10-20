@@ -11,6 +11,10 @@ class Name(tk.Frame):
         self.restartButton["text"] = "RESTART"
         self.restartButton["command"] = self.master.startNewWindow
         self.restartButton["fg"] = "red"
+        self.submitButton = tk.Button(self)
+        self.submitButton["text"] = "Next"
+        self.submitButton["command"] = self.getName
+        self.submitButton["fg"] = "green"
         self.textName = tk.Label(self)
         self.inputName= tk.Entry(self)
         self.labelError = tk.Label(self)
@@ -27,7 +31,8 @@ class Name(tk.Frame):
         self.textError.set("")
         self.labelError["textvariable"] = self.textError
         self.labelError.grid(column = 0, row = 2)
-        self.restartButton.grid(row = 1, column = 2, padx = 100)
+        self.restartButton.grid(row = 1, column = 3, padx = 100)
+        self.submitButton.grid(row = 1, column = 2, padx = 20)
 
 
 
