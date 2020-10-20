@@ -30,7 +30,7 @@ class SummonerInfo:
     # Ask for summoner Name. We get all the info about him with that (id, level, etc in s_info_dict)
     def getSummonerName(self, name):
         self.name = name
-        sumonner_request = r.get("https://" + self.region + ".api.riotgames.com/lol/summoner/v4/summoners/by-name/" + self.name + "?api_key=" + apiKey)
+        sumonner_request = r.get("https://" + self.region + ".api.riotgames.com/lol/summoner/v4/summoners/by-name/" + self.name.replace(" ", "%20") + "?api_key=" + apiKey)
         if sumonner_request.status_code == 200:
             self.s_info_dict  = sumonner_request.json()
             self.id = self.s_info_dict['id']
