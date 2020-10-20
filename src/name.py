@@ -23,7 +23,7 @@ class Name(tk.Frame):
         self.createWidgets()
 
     def createWidgets(self):
-        self.textName["text"] = "Entrez votre nom d'invocateur pour la région " + self.master.s.region
+        self.textName["text"] = "Enter your summoner name for the region " + self.master.s.region
         self.textName.grid(column = 0, row = 0)
         self.inputName.bind("<KeyPress-Return>", self.getName)
         self.inputName['bg'] = "cyan"
@@ -38,10 +38,21 @@ class Name(tk.Frame):
 
     def getName(self,arg = None):
         name = self.inputName.get()
-        res = self.master.s.getSummonerName(name)
-        if res:
-            print(self.master.s.s_info_dict)
-            self.master.callPanelFrame()
-        else:
+        if name == "":
             self.inputName['bg'] = 'magenta'
-            self.textError.set("Erreur sur le nom d'invocateur, réessayez")
+            self.textError.set("Error, the text input is empty")
+            self.labelError["fg"] = "red"
+        else:
+            res = self.master.s.getSummonerName(name)
+            print(res)
+            if res == 200:
+                print(self.master.s.s_info_dict)
+                self.master.callPanelFrame()
+            elif res == 403:
+                self.inputName['bg'] = 'magenta'
+                self.labelError["fg"] = "red"
+                self.textError.set("Error, the Riot API key is not valid !\n Check out the readme on the github repo for more info.\n https://github.com/EyeXion/Riot_Project")
+            elif res == 404:
+                self.inputName['bg'] = 'magenta'
+                self.textError.set("Error, this summonor does not exist")
+                self.labelError["fg"] = "red"

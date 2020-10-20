@@ -31,7 +31,7 @@ class Region(tk.Frame):
         self.submitButton["text"] = "Next"
         self.submitButton["command"] = self.getRegion
         self.submitButton["fg"] = "green"
-        self.credits["text"] = "Coded by EyeXion : https://github.com/EyeXion"
+        self.credits["text"] = "Coded by EyeXion : https://github.com/EyeXion. Coded in Python 3.8. Uses Riot API and Dragon Community CDN endpoints for assets"
         self.textTitle["text"] = "Enter EUW, JP, EUN or KR for the region"
         self.listRegion["yscrollcommand"] = self.yDefil.set(1,5)
         self.listRegion.insert(0, "EUW")
