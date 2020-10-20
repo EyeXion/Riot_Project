@@ -94,7 +94,7 @@ class Panel(tk.Frame):
                 emblemMastery.append(ImageTk.PhotoImage(tmpEmblem))
                 tmpEmblem.close()
                 self.labelChampionMasteryName[i]["text"] = self.master.s.getChampionInfo(i)["name"]
-                icon_path = self.master.s.getChampionIcon(i)
+                icon_path = self.master.s.getChampionIconMastery(i)
                 tmpImage = Image.open(icon_path)
                 tmpImage = tmpImage.resize((int(tmpImage.size[0] * 0.8),int(tmpImage.size[1] * 0.8)))
                 imageMastery.append(ImageTk.PhotoImage(tmpImage))
@@ -120,26 +120,26 @@ class Panel(tk.Frame):
                 self.labelChampionMasteryLevel[i].grid(row = i+1, column = 2)
 
 
-            if self.gameInfo == "":
-                self.gameText["text"] = "Not in game"
-                self.gameText["fg"] = "red"
-                self.gameText.config(font=("Helvetica", 30))
-                self.gameText.grid(row = 2, column = 3)
-            else:
-                self.gameText["text"] = "In game with"
-                self.gameText["fg"] = "green"
-                self.gameText.config(font=("Helvetica", 30))
-                self.gameText.grid(row = 1, column = 3)
-                for j in self.gameInfo["participants"]:
-                    if j["summonerId"] == self.master.s.id:
-                        icon_path = self.master.s.getChampionIcon(4)
-                        tmpImage = Image.open(icon_path)
-                        tmpImage = tmpImage.resize((int(tmpImage.size[0] * 0.8), int(tmpImage.size[1] * 0.8)))
-                        imageChampion = ImageTk.PhotoImage(tmpImage)
-                        tmpImage.close()
-                        self.gameIcon["image"]  = imageChampion
-                        self.gameIcon.image = imageChampion
-                        self.gameIcon.grid(row = 2, column = 3)
-                        break
+        if self.gameInfo == "":
+            self.gameText["text"] = "Not in game"
+            self.gameText["fg"] = "red"
+            self.gameText.config(font=("Helvetica", 30))
+            self.gameText.grid(row = 2, column = 3)
+        else:
+            self.gameText["text"] = "In game with"
+            self.gameText["fg"] = "green"
+            self.gameText.config(font=("Helvetica", 30))
+            self.gameText.grid(row = 1, column = 3)
+            for j in self.gameInfo["participants"]:
+                if j["summonerId"] == self.master.s.id:
+                    icon_path = self.master.s.getChampionIconGame(j["championId"])
+                    tmpImage = Image.open(icon_path)
+                    tmpImage = tmpImage.resize((int(tmpImage.size[0] * 0.8), int(tmpImage.size[1] * 0.8)))
+                    imageChampion = ImageTk.PhotoImage(tmpImage)
+                    tmpImage.close()
+                    self.gameIcon["image"]  = imageChampion
+                    self.gameIcon.image = imageChampion
+                    self.gameIcon.grid(row = 2, column = 3)
+                    break
 
 

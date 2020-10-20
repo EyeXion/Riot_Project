@@ -89,7 +89,7 @@ class SummonerInfo:
             print(info_request.json())
             return {}
 
-    def getChampionIcon(self,index):
+    def getChampionIconMastery(self,index):
         icon_request = r.get(" https://cdn.communitydragon.org/latest/champion/" + str(self.s_mastery_dict[index]["championId"]) + "/square")
 
         if icon_request.status_code == 200:
@@ -102,8 +102,25 @@ class SummonerInfo:
             return name_file
         else:
             print("Error requete recherche data champion")
-            print(info_request.json())
+            print(icon_request.json())
             return {}
+
+    def getChampionIconGame(self,championId):
+        icon_request = r.get(" https://cdn.communitydragon.org/latest/champion/" + str(championId) + "/square")
+
+        if icon_request.status_code == 200:
+            name_file = "../loadedassets/championIconGame.png"
+            if os.path.exists(name_file):
+                os.remove(name_file)
+            file = open(name_file, "wb")
+            file.write(icon_request.content)
+            file.close()
+            return name_file
+        else:
+            print("Error requete recherche data champion")
+            print(icon_request.json())
+            return {}
+
 
     def getCurrentGame(self):
         game_request = r.get("https://" + self.region + ".api.riotgames.com/lol/spectator/v4/active-games/by-summoner/" + self.id + "?api_key=" + apiKey)
