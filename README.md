@@ -22,4 +22,4 @@ If you don't want to create an account, you can contact me and I will give you m
 
 Then you only need to run the app (the main is in `src/main.py`)
 
-NB : This app only was created for learning and fun purposes and no other purpose whatsoever. It is kind of bad, but really fun to create ! 
+NB : This app only was created for learning and fun purposes only. It is kind of bad, but was really fun to create ! 
