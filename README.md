@@ -20,6 +20,11 @@ pip3 install requests
 You wont be able to use this small app if you don't have a Riot API key. If you want one, it's there : https://developer.riotgames.com/ (a developer key lasts for a day). You will need to copy/paste it `src/summonerinfo.py` line 7 (`apiKey = "<YOUR KEY>"`).
 If you don't want to create an account, you can contact me and I will give you my temporary developer key that lasts for a day. 
 
-Then you only need to run the app (the main is in `src/main.py`). In a Powershell terminal, run `python src/main`, without the python command it does not work.
+Then you only need to run the app (considering you are at the root of the repositiry) with : 
+
+```bash
+cd src
+python3 ./main.py
+```
 
 NB : This app only was created for learning and fun purposes only. It is kind of bad, but was really fun to create ! 
