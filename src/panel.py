@@ -5,24 +5,24 @@ import tkinter as tk
 
 class Panel(tk.Frame):
 
-    dict_image_tier = {"IRON" : "assets/Emblem_Iron.png",
-                       "BRONZE" : "assets/Emblem_Bronze.png",
-                       "SILVER" : "assets/Emblem_Silver.png",
-                       "GOLD" : "assets/Emblem_Gold.png",
-                       "PLATINUM" : "assets/Emblem_Platinum.png",
-                       "DIAMOND" : "assets/Emblem_Diamond.png",
-                       "MASTER" : "assets/Emblem_Iron.Master",
-                       "GRANDMASTER" : "assets/Emblem_Grandmaster.png",
-                       "CHALLENGER" : "assets/Emblem_Challenger.png",
-                       "UNRANKED" : "assets/Emblem_Unranked.png"}
+    dict_image_tier = {"IRON" : "../assets/Emblem_Iron.png",
+                       "BRONZE" : "../assets/Emblem_Bronze.png",
+                       "SILVER" : "../assets/Emblem_Silver.png",
+                       "GOLD" : "../assets/Emblem_Gold.png",
+                       "PLATINUM" : "../assets/Emblem_Platinum.png",
+                       "DIAMOND" : "../assets/Emblem_Diamond.png",
+                       "MASTER" : "../assets/Emblem_Iron.Master",
+                       "GRANDMASTER" : "../assets/Emblem_Grandmaster.png",
+                       "CHALLENGER" : "../assets/Emblem_Challenger.png",
+                       "UNRANKED" : "../assets/Emblem_Unranked.png"}
 
-    dict_image_mastery = { 1 : "assets/mastery-1.png",
-                           2: "assets/mastery-2.png",
-                           3: "assets/mastery-3.png",
-                           4: "assets/mastery-4.png",
-                           5: "assets/mastery-5.png",
-                           6: "assets/mastery-6.png",
-                           7: "assets/mastery-7.png",
+    dict_image_mastery = { 1 : "../assets/mastery-1.png",
+                           2: "../assets/mastery-2.png",
+                           3: "../assets/mastery-3.png",
+                           4: "../assets/mastery-4.png",
+                           5: "../assets/mastery-5.png",
+                           6: "../assets/mastery-6.png",
+                           7: "../assets/mastery-7.png",
     }
 
     def __init__(self, master = None):

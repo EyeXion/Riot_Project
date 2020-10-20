@@ -58,12 +58,12 @@ class SummonerInfo:
         icon_request = r.get("https://cdn.communitydragon.org/latest/profile-icon/" + str(self.s_info_dict['profileIconId']))
 
         if icon_request.status_code == 200:
-            if os.path.exists("loadedassets/profileIcon.png"):
-                os.remove("loadedassets/profileIcon.png")
-            file = open("loadedassets/profileIcon.png", "wb")
+            if os.path.exists("../loadedassets/profileIcon.png"):
+                os.remove("../loadedassets/profileIcon.png")
+            file = open("../loadedassets/profileIcon.png", "wb")
             file.write(icon_request.content)
             file.close()
-            return "loadedassets/profileIcon.png"
+            return "../loadedassets/profileIcon.png"
         else:
             print("Erreur chargement image profile")
             print(icon_request.status_code)
@@ -93,7 +93,7 @@ class SummonerInfo:
         icon_request = r.get(" https://cdn.communitydragon.org/latest/champion/" + str(self.s_mastery_dict[index]["championId"]) + "/square")
 
         if icon_request.status_code == 200:
-            name_file = "loadedassets/championIcon" + str(index) + ".png"
+            name_file = "../loadedassets/championIcon" + str(index) + ".png"
             if os.path.exists(name_file):
                 os.remove(name_file)
             file = open(name_file, "wb")
